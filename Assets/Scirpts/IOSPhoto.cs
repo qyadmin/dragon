@@ -148,7 +148,7 @@ public class IOSPhoto : MonoBehaviour
         ShowLoad = ShowOrHit._Instance.HttpLoading.gameObject;
         ShowError = ShowOrHit._Instance.Worning.gameObject;
 #if UNITY_IPHONE
-        ios.Initialization();
+        Initialization();
 #endif
     }
 
@@ -194,7 +194,7 @@ public class IOSPhoto : MonoBehaviour
             }
 
             UnityWebRequest www = UnityWebRequest.Post(url, form);
-            www.timeout = 5;
+            www.timeout = 15;
             Debug.Log(url);
             //  MessageManager._Instantiate.AddLockNub();
             //WWW www = new WWW(url, form);

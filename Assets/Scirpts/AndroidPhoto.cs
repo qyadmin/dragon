@@ -289,7 +289,7 @@ public class AndroidPhoto : MonoBehaviour {
             }
 
             UnityWebRequest www = UnityWebRequest.Post(url, form);
-            www.timeout = 5;
+            www.timeout = 15;
             Debug.Log(url);
             //  MessageManager._Instantiate.AddLockNub();
             //WWW www = new WWW(url, form);

@@ -25,7 +25,7 @@ public class HttpModel : MonoBehaviour {
     public UnityEvent DoAction;
 	public bool NoShow=false;
 
-    int timeOut = 5;
+    int timeOut = 15;
 
     public EventPatcher<JsonData> CallBackData = new EventPatcher<JsonData>();
     public JsonData CurrentData;

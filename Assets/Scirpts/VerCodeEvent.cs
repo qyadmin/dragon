@@ -79,7 +79,7 @@ public class VerCodeEvent : MonoBehaviour {
 		string tigUrl =Static.Instance.URL+url;
         Debug.Log(tigUrl);
         UnityWebRequest www = UnityWebRequest.Get(tigUrl);
-        www.timeout = 5;
+        www.timeout = 15;
 
         //WWW www = new WWW(url);
         //yield return www;
