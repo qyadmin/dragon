@@ -33,6 +33,9 @@ public class sell_event : MonoBehaviour {
         button1.onClick.AddListener(delegate () {
             sell1();
         });
+        button2.onClick.AddListener(delegate () {
+            sell2();
+        });
     }
 
 
