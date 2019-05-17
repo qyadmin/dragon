@@ -31,7 +31,8 @@ public class ly_event : MonoBehaviour {
             
             loading.gameObject.SetActive(false);
             lypanle.gameObject.SetActive(true);
-            audio.Play();
+            if (Static.Instance.MusicSwich)
+                audio.Play();
             refrece.Get();
             _timer.EndTimer();
         }
@@ -62,14 +63,18 @@ public class ly_event : MonoBehaviour {
     public void successful()
     {
         img.sprite = suc_spr;
-        audio.clip = suc_aud;
+        if (Static.Instance.MusicSwich)
+        {           
+            audio.clip = suc_aud;
+        }      
         Gettime(0);
     }
 
     public void failure()
     {
         img.sprite = fal_spr;
-        audio.clip = fal_aud;
+        if (Static.Instance.MusicSwich)
+            audio.clip = fal_aud;
         Gettime(120);
     }
 

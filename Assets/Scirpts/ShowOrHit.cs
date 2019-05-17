@@ -15,9 +15,15 @@ public class ShowOrHit : MonoBehaviour {
     [SerializeField]
     public Button Password_button;
 
+
     private void Awake()
     {
         _Instance = this;
+    }
+
+    private void Start()
+    {
+        SoundAwake();      
     }
 
     public void Show(GameObject Obj)
@@ -187,20 +193,27 @@ public class ShowOrHit : MonoBehaviour {
 
     private bool open = true;
     public Sprite Open, close;
-    public Image myself;
-    public void FLMUSIC(AudioSource AA)
+    public Slider myself;
+    public void FLMUSIC()
     {
 		open = Static.Instance.MusicSwich;
         open = !open;
-		Static.Instance.MusicSwich = open;
-        AA.enabled = open ? true : false;
-        myself.GetComponent<Image>().sprite = open ? Open : close;
+		Static.Instance.MusicSwich = open;    
     }
-	public void SoundAwake(AudioSource AA)
+	public void SoundAwake()
 	{
 		open = Static.Instance.MusicSwich;
-		AA.enabled = open ? true : false;
-		myself.GetComponent<Image>().sprite = open ? Open : close;
+
+        if (myself == null)
+            return;
+        if (open)
+            myself.value = 1;
+        else
+            myself.value = 0;
+
+        myself.onValueChanged.AddListener((float value) => {
+            FLMUSIC();
+        });
 	}
 
 
@@ -319,12 +332,24 @@ public class ShowOrHit : MonoBehaviour {
 
     [SerializeField]
     Transform quit;
+    [SerializeField]
+    PopupWindowEvent Menu;
     public void Exit()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            quit.gameObject.SetActive(true);
+            if (Menu)
+            {
+                if (Menu.get_type() == 1)
+                    quit.gameObject.SetActive(true);
+                else
+                    Menu.select_type(1);
+            }
+            else
+                quit.gameObject.SetActive(true);
         }
+
     }
 
     public void Quit()

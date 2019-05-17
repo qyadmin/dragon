@@ -117,7 +117,7 @@ public class Static
 	public bool Lock=true;
 	public bool MusicSwich = true;
     //替换芯域名
-    public string URL = "http://www.6e2d8.com/";//"http://www.6e2d8.com/";//"http://zshz.hlrb7.cn/";//"http://lpgw.hlrb7.cn/";//"http://alihz.hlrb7.cn/";//"http://www.hcfir.cn/";//http://straw.mmykw.cn//http://test.mmykw.cn/
+    public string URL = "http://www.linkdesign-china.cn/";//"http://www.6e2d8.com/";//"http://zshz.hlrb7.cn/";//"http://lpgw.hlrb7.cn/";//"http://alihz.hlrb7.cn/";//"http://www.hcfir.cn/";//http://straw.mmykw.cn//http://test.mmykw.cn/
                                                 //public string URLold = "http://www.782pay.cn";http://www.pb6x.cn/
     public Logininfo LoginAccount = new Logininfo();
 

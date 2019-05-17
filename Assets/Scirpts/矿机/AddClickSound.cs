@@ -14,6 +14,7 @@ public class AddClickSound : MonoBehaviour {
 
     public void ButtonAddSound()
     {
-        Instantiate(SoundObj);
+        if (Static.Instance.MusicSwich)
+            Instantiate(SoundObj);
     }
 }

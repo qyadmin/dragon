@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 public class GMType
 {
     public Button type;
+    public int Num;
     public Sprite icon;
     public Sprite clickicon;
     bool isclick;
@@ -49,6 +50,9 @@ public class PopupWindowEvent : MonoBehaviour
     GMType[] typelist;
 
     bool isEnable = false;
+
+    [SerializeField]
+    int current;
 
     [SerializeField]
     Transform AllWindow;
@@ -115,12 +119,15 @@ public class PopupWindowEvent : MonoBehaviour
             i.gameObject.SetActive(false);
         }
 
-
-
         typelist[0].isClick = true;
     }
     private void OnStart()
     {
+        for (int i=0;i< typelist.Length;i++)
+        {
+            typelist[i].Num = i+1;
+        }
+
         foreach (GMType i in typelist)
         {
             i.typeClick.AddListener(delegate {
@@ -128,6 +135,7 @@ public class PopupWindowEvent : MonoBehaviour
             });
             i.type.onClick.AddListener(delegate {
                 i.typeClick.Invoke();
+                current = i.Num;
             });
         }
         if(AllWindow)
@@ -182,6 +190,11 @@ public class PopupWindowEvent : MonoBehaviour
     public void select_type(int i)
     {
         typelist[i - 1].type.onClick.Invoke();
+    }
+
+    public int get_type()
+    {
+        return current;
     }
     
 }

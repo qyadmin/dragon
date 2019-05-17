@@ -220,19 +220,19 @@ public class Camera_Contral : MonoBehaviour {
 
         WWW www = new WWW(obj);
         yield return www;
-        if (www.error != null)
-        {
-            Debug.Log(www.error);
-            imgfal.Invoke();
-        }
-        if (www != null && string.IsNullOrEmpty(www.error))
+       
+        if (www.error == null && www.bytes.Length != 0)
         {
             Sprite sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), Vector2.zero);
             foreach(Image i in sprit2)
             i.sprite = sprite;
 
             imgsuc.Invoke();
-
+        }
+        else           
+        {
+            Debug.Log(www.error);
+            imgfal.Invoke();
         }
     }
 
