@@ -43,7 +43,7 @@ public class sell_event : MonoBehaviour {
     {
         id = "0";
         tital_text = "推广收益";
-        worning = "301以上可以出售";
+        worning = "501以上可以出售";
         button0.GetComponent<Image>().color = new Color(0.8f,0.8f,0.8f);
         button1.GetComponent<Image>().color = new Color(1, 1, 1);
         button2.GetComponent<Image>().color = new Color(1, 1, 1);
