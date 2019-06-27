@@ -28,19 +28,11 @@ public class ly_event : MonoBehaviour {
     {
         if (time <= 0)
         {
-            
-            loading.gameObject.SetActive(false);
-            lypanle.gameObject.SetActive(true);
-            if (Static.Instance.MusicSwich)
-                audio.Play();
-            refrece.Get();
+            failure();
             _timer.EndTimer();
         }
         else
-        {
-            loading.gameObject.SetActive(true);
-            lypanle.gameObject.SetActive(false);
-            waitsecond.text = "";
+        {          
             time--;
         }
     }
@@ -66,8 +58,13 @@ public class ly_event : MonoBehaviour {
         if (Static.Instance.MusicSwich)
         {           
             audio.clip = suc_aud;
-        }      
-        Gettime(0);
+        }
+        loading.gameObject.SetActive(false);
+        lypanle.gameObject.SetActive(true);
+        if (Static.Instance.MusicSwich)
+            audio.Play();
+        stopupdate();
+        refrece.Get();
     }
 
     public void failure()
@@ -75,7 +72,12 @@ public class ly_event : MonoBehaviour {
         img.sprite = fal_spr;
         if (Static.Instance.MusicSwich)
             audio.clip = fal_aud;
-        Gettime(120);
+        loading.gameObject.SetActive(false);
+        lypanle.gameObject.SetActive(true);
+        if (Static.Instance.MusicSwich)
+            audio.Play();
+        stopupdate();
+        refrece.Get();
     }
 
     string cg_flag;
@@ -84,14 +86,35 @@ public class ly_event : MonoBehaviour {
     {
         if (cg_flag == "1")
             successful();
-        else
-            failure();
     }
 
 
     public void get_cg_flag(object value)
     {
         cg_flag = value.ToString();
+    }
+    [SerializeField]
+    HttpModel lingyang;
+
+    public void startUpdate()
+    {
+        loading.gameObject.SetActive(true);
+        StopAllCoroutines();
+        StartCoroutine(updateHttp());
+        Gettime(360);
+    }
+
+    IEnumerator updateHttp()
+    {
+        lingyang.Get();
+        yield return new WaitForSeconds(5);
+        StartCoroutine(updateHttp());
+    }
+
+    public void stopupdate()
+    {
+        StopAllCoroutines();
+        _timer.EndTimer(); 
     }
 
 }
