@@ -96,12 +96,20 @@ public class ly_event : MonoBehaviour {
     [SerializeField]
     HttpModel lingyang;
 
-    public void startUpdate()
+    public void startUpdate(object value)
     {
-        loading.gameObject.SetActive(true);
-        StopAllCoroutines();
-        StartCoroutine(updateHttp());
-        Gettime(360);
+        if (value.ToString() == "1")
+        {
+            loading.gameObject.SetActive(true);
+            StopAllCoroutines();
+            StartCoroutine(updateHttp());
+            Gettime(360);
+        }
+        else
+        {
+            ShowOrHit._Instance.Worning.gameObject.SetActive(true);           
+        }
+       
     }
 
     IEnumerator updateHttp()
